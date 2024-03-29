@@ -36,7 +36,7 @@ public struct ColourUtils {
     }
     #endif
     
-    static func isLight(r: CGFloat, g: CGFloat, b: CGFloat, threshold: Int = 150) -> Bool {
+    public static func isLight(r: CGFloat, g: CGFloat, b: CGFloat, threshold: Int = 150) -> Bool {
         return (r * 0.299 + g * 0.587 + b * 0.114 > (Double(threshold) / 255))
     }
 }
