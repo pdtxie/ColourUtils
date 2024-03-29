@@ -10,7 +10,7 @@ public struct ColourUtils {
     public init() { }
     
     #if canImport(UIKit)
-    static func getShadesFor(rgb c: SIMD3<Double>, n: Int) -> [UIColor] {
+    public static func getShadesFor(rgb c: SIMD3<Double>, n: Int) -> [UIColor] {
         var tints = [UIColor]()
         var shades = [UIColor]()
         
@@ -28,7 +28,7 @@ public struct ColourUtils {
     }
     
     
-    static func generateRandomPleasingColour() -> UIColor {
+    public static func generateRandomPleasingColour() -> UIColor {
         let base = SIMD3<Double>(CGFloat.random(in: 0...1), CGFloat.random(in: 0...1), CGFloat.random(in: 0...1))
         let (h, s, _) = getHSV(r: base.x, g: base.y, b: base.z)
         
@@ -44,7 +44,7 @@ public struct ColourUtils {
 
 // MARK: - rgb
 public extension ColourUtils {
-    static func getRGB(hex string: String) -> SIMD3<Double>? {
+    public static func getRGB(hex string: String) -> SIMD3<Double>? {
         var hex = string.trimmingCharacters(in: .whitespacesAndNewlines)
         hex = hex.replacingOccurrences(of: "#", with: "")
         
@@ -66,11 +66,11 @@ public extension ColourUtils {
 
 // MARK: - hex
 public extension ColourUtils {
-    static func getHex(r: CGFloat, g: CGFloat, b: CGFloat) -> String {
+    public static func getHex(r: CGFloat, g: CGFloat, b: CGFloat) -> String {
         hexFormat(r) + hexFormat(g) + hexFormat(b)
     }
     
-    static func getHex(rgb c: SIMD3<Double>) -> String {
+    public static func getHex(rgb c: SIMD3<Double>) -> String {
         hexFormat(c.x) + hexFormat(c.y) + hexFormat(c.z)
     }
 }
@@ -78,7 +78,7 @@ public extension ColourUtils {
 
 // MARK: - hsb/v & hsl
 public extension ColourUtils {
-    static func getHSV(r: CGFloat, g: CGFloat,  b: CGFloat) -> (h: CGFloat, s: CGFloat, v: CGFloat) {
+    public static func getHSV(r: CGFloat, g: CGFloat,  b: CGFloat) -> (h: CGFloat, s: CGFloat, v: CGFloat) {
         let v = max(r, g, b)
         let c = v - min(r, g, b)
         
@@ -103,7 +103,7 @@ public extension ColourUtils {
     }
     
     
-    static func getHSL(h: CGFloat, s: CGFloat, v: CGFloat) -> (h: CGFloat, s: CGFloat, l: CGFloat) {
+    public static func getHSL(h: CGFloat, s: CGFloat, v: CGFloat) -> (h: CGFloat, s: CGFloat, l: CGFloat) {
         let l = (2 - s) * v / 2
         var s_l = s
         
@@ -123,6 +123,6 @@ public extension ColourUtils {
 
 
 // MARK: helper
-private func hexFormat(_ x: CGFloat) -> String {
+internal func hexFormat(_ x: CGFloat) -> String {
     return String(format: "%02X", Int(x * 255))
 }

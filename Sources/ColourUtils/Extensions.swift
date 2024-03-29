@@ -2,7 +2,7 @@
 import UIKit
 
 public extension UIColor {
-    convenience init(hex: String) {
+    public convenience init(hex: String) {
         if let c = ColourUtils.getRGB(hex: hex) {
             self.init(red: c.x, green: c.y, blue: c.z, alpha: 1.0)
         } else {
